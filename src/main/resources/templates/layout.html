@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" >
+        <title th:include="::content">layout</title>
+        <style>
+          .footer {
+            padding-bottom: 50px;
+            margin-top: 50px;
+          }
+          .grey {
+            color: #a3a3a3ff;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 20px;
+            text-align: center;
+          }
+          .black {
+            color: #262626;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 20px;
+            text-align: center;
+          }
+        </style>
+    </head>
+    <body>
+      <div th:include="::content"></div>
+      <footer class="footer">
+        <div class="filings">
+          <p class="grey">2019 douban 京IC备案11027288号 网络视听许可证0110418号 京公网安备110105012274 新出发京批字直接150126号</p>
+          <p class="grey">违法和不良信息举报 电话：17610209667 邮箱：doubannvgroup.cn</p>
+          <p class="black">广告合作：adfm@douban.com  FM用户手册  新版说明  我要反馈  豆瓣FM中心</p>
+        </div>
+      </footer>
+    </body>
+</html>

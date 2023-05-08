@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="fastRequestCurrentParamGroup">
+    <option name="className" value="org.lyqing.doubanfm.controller.MainController" />
+    <option name="filePath" value="" />
+    <option name="method" value="index" />
+    <option name="module" value="doubanFM" />
+    <option name="originUrl" value="/index" />
+    <option name="returnDocument" value="&quot;No comment,Type =String&quot;" />
+    <option name="url" value="/index" />
+  </component>
+</project>
