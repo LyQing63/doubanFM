@@ -26,6 +26,8 @@ public class SongServiceImpl implements SongService {
             for (String singerId : singerIds) {
                 songMapper.addSongSingers(song.getId(), singerId);
             }
+        } else {
+            songMapper.modify(song);
         }
     }
 

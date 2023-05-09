@@ -13,9 +13,6 @@ import java.util.List;
 public class SubjectServiceImpl implements SubjectService {
 
     @Autowired
-    private SubjectUtil subjectUtil;
-
-    @Autowired
     private SubjectMapper subjectMapper;
 
     @Override
@@ -32,6 +29,9 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     public Subject getSubject(String subjectId) {
         Subject subject = subjectMapper.getSubject(subjectId);
+        if (subject == null) {
+            return null;
+        }
         List<String> subjectSongs = subjectMapper.getSubjectSongs(subjectId);
         subject.setSongIds(subjectSongs);
         return subject;

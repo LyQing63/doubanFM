@@ -21,9 +21,14 @@ public class SingerServiceImpl implements SingerService {
         if (getSinger(singer.getId()) == null) {
             mapper.addSinger(singer);
             List<String> similarSingerIds = singer.getSimilarSingerIds();
+            if (similarSingerIds == null) {
+                return;
+            }
             for (String similarSingerId : similarSingerIds) {
                 mapper.addSimilarSinger(singer.getId(), similarSingerId);
             }
+        } else {
+            mapper.modify(singer);
         }
     }
 
