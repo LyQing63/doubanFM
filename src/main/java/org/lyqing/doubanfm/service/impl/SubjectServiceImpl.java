@@ -54,4 +54,17 @@ public class SubjectServiceImpl implements SubjectService {
             subjectMapper.deleteSubjectSongIds(subjectId);
         }
     }
+
+    @Override
+    public void modify(Subject subject) {
+        subjectMapper.modify(subject);
+        String id = subject.getId();
+        List<String> songIds = subject.getSongIds();
+        for (String songId : songIds) {
+            if (subjectMapper.getSubjectSongs(id) == null) {
+                subjectMapper.addSubjectSongs(id, songId);
+            }
+            subjectMapper.modifySubjectSong(id, songId);
+        }
+    }
 }

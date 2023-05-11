@@ -30,4 +30,10 @@ public interface SubjectService {
      * 删除主题
      * */
     void deleteSubject(String subjectId);
+
+    /**
+     * 修改主题
+     * */
+    void modify(Subject subject);
+
 }

@@ -75,4 +75,14 @@ public interface SubjectMapper {
     )
     void deleteSubjectSongIds(@Param("subjectId")String subjectId);
 
+    @Update(
+            "UPDATE subject SET gmtModified=#{subject.gmtModified} WHERE id=#{subject.id}"
+    )
+    void modify(@Param("subject") Subject subject);
+
+    @Update(
+            "UPDATE subject_songs SET song_id=#{songId} WHERE subject_id=#{subjectId}"
+    )
+    void modifySubjectSong(@Param("subjectId") String subjectId, @Param("songId") String songId);
+
 }

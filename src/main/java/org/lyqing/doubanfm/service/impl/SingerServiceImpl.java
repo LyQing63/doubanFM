@@ -6,8 +6,6 @@ import org.lyqing.doubanfm.service.SingerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -53,8 +51,10 @@ public class SingerServiceImpl implements SingerService {
         if (getSinger(singer.getId()) == null) {
             mapper.modify(singer);
             List<String> similarSingerIds = singer.getSimilarSingerIds();
-            for (String similarSingerId : similarSingerIds) {
-                mapper.similarModify(singer.getId(), similarSingerId);
+            if (similarSingerIds != null) {
+                for (String similarSingerId : similarSingerIds) {
+                    mapper.similarModify(singer.getId(), similarSingerId);
+                }
             }
 
         }

@@ -49,12 +49,17 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
+    public List<Song> getAll() {
+        return songMapper.getAll();
+    }
+
+    @Override
     public void modify(Song song) {
         if (getSong(song.getId()) == null) {
             songMapper.modify(song);
             List<String> singerIds = song.getSingerId();
             for (String singerId : singerIds) {
-                songMapper.SingerModify(song.getId(), singerId);
+                songMapper.singerModify(song.getId(), singerId);
             }
         }
     }

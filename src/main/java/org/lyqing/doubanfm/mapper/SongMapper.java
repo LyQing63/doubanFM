@@ -11,7 +11,7 @@ import java.util.List;
 public interface SongMapper {
 
     @Insert(
-            "INSERT INTO song VALUES (#{song.id}, #{song.gmtCreated}, #{song.name}, #{song.lyrics}, #{song.cover}, #{song.url}, #{song.singerId}, #{song.gmtModified})"
+            "INSERT INTO song VALUES (#{song.id}, #{song.gmtCreated}, #{song.name}, #{song.lyrics}, #{song.cover}, #{song.url}, #{song.gmtModified})"
     )
     void addSong(@Param("song") Song song);
 
@@ -35,19 +35,33 @@ public interface SongMapper {
     Song getSong(@Param("songId") String songId);
 
     @Select(
+            "SELECT * FROM song"
+    )
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "gmtCreated", column = "gmtCreated"),
+            @Result(property = "gmtModified", column = "gmtModified"),
+            @Result(property = "name", column = "songName"),
+            @Result(property = "lyrics", column = "lyrics"),
+            @Result(property = "cover", column = "cover"),
+            @Result(property = "url", column = "url")
+    })
+    List<Song> getAll();
+
+    @Select(
             "SELECT singer_id FROM song_singers WHERE song_id = #{songId}"
     )
     List<String> getSongSingers(@Param("songId") String songId);
 
     @Update(
-            "UPDATE song SET gmtModified=#{song.gmtCreated}, songName=#{song.name}, gmtCreated=#{gmtModified}, lyrics=#{lyrics}, cover=#{cover}, url=#{url} WHERE id=#{song.id}"
+            "UPDATE song SET gmtModified=#{song.gmtCreated}, songName=#{song.name}, lyrics=#{song.lyrics}, cover=#{song.cover}, url=#{song.url}, gmtCreated=#{song.gmtModified} WHERE id=#{song.id}"
     )
     void modify(@Param("song") Song song);
 
     @Update(
             "UPDATE song_singers SET singer_id=#{singerId} WHERE song_id=#{songId}"
     )
-    void SingerModify(@Param("songId") String songId, @Param("singerId") String singerId);
+    void singerModify(@Param("songId") String songId, @Param("singerId") String singerId);
 
     @Delete(
             "DELETE FROM song WHERE id = #{songId}"

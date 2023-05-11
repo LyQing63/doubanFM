@@ -13,7 +13,7 @@ import java.util.List;
 public class Singer implements Serializable {
 
     private String id;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime gmtCreated;
     private String name;
     private String avatar;

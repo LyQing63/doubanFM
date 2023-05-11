@@ -1,10 +1,13 @@
 package org.lyqing.doubanfm;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.lyqing.doubanfm.pojo.Subject;
 import org.lyqing.doubanfm.service.SubjectService;
 import org.lyqing.doubanfm.util.SubjectUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -13,13 +16,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = DoubanFmApplication.class)
 public class SubjectTest {
 
     @Autowired
     private SubjectService subjectService;
 
     @Test
-    public Subject testAddSubject() {
+    public void testAddSubject() {
         List<String> songs = new ArrayList<>();
         Collections.addAll(songs, "001", "002");
         Subject subject = new Subject(
@@ -31,36 +36,34 @@ public class SubjectTest {
         subjectService.addSubject(subject);
         System.out.println("-----------测试成功-----------");
         System.out.println(subject);
-        return subject;
     }
 
     @Test
-    public Subject testGetSubject(@PathVariable("id") String id) {
-        Subject subject = subjectService.getSubject(id);
+    public void testGetSubject() {
+        Subject subject = subjectService.getSubject("001");
         System.out.println("-----------测试成功-----------");
-        return subject;
+        System.out.println(subject);
     };
 
 
     @Test
-    public void testDeleteSubject(@PathVariable("id") String id) {
-        subjectService.deleteSubject(id);
+    public void testDeleteSubject() {
+        subjectService.deleteSubject("001");
         System.out.println("-----------测试成功-----------");
     };
 
     @Test
-    public List<Subject> testGetSubjectByType(@PathVariable("type") String type) {
-        List<Subject> subjects = subjectService.getSubjects(type);
+    public void testGetSubjectByType() {
+        List<Subject> subjects = subjectService.getSubjects("mhz");
         System.out.println("-----------测试成功-----------");
         System.out.println(subjects);
-        return subjects;
     }
 
     @Test
-    public List<Subject> testGetSubjectBySubType(@PathVariable("type") String type, @PathVariable("subType") String subType) {
-        List<Subject> subjects = subjectService.getSubjects(type, subType);
+    public void testGetSubjectBySubType() {
+        List<Subject> subjects = subjectService.getSubjects("mhz", "artist");
         System.out.println("-----------测试成功-----------");
-        return subjects;
+        System.out.println(subjects);
     };
 
 }

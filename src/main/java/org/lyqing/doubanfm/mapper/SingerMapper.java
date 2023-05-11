@@ -56,7 +56,7 @@ public interface SingerMapper {
     void modify(@Param("singer") Singer singer);
 
     @Update(
-            "UPDATE singer_similar SET #{similarId} WHERE id = #{singerId}"
+            "UPDATE singer_similar SET similar_id=#{similarId} WHERE singer_id = #{singerId}"
     )
     void similarModify(@Param("singerId") String singerId, @Param("similarId") String similarId);
     @Delete(
