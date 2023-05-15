@@ -54,7 +54,7 @@ public class SubjectSpider {
 
     private static final String CO_URL = "https://fm.douban.com/j/v2/songlist/explore?type=hot&genre=0&limit=20&sample_cnt=5";
 
-    @PostConstruct
+    //@PostConstruct
     public void init() {
         doExcute();
         logger.info("spider end...");

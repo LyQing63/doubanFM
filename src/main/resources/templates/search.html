@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+        <title>搜索</title>
+    </head>
+    <body>
+        <input type="text" />
+        <input type="submit" value="提交" onclick="search()">
+        <div id="result"></div>
+    </body>
+    <script>
+        function search() {
+            var input = document.getElementsByTagName("input")[0];
+            var keyword = input.value;
+            fetch(
+                'http://localhost:8080/searchContent/' + keyword
+            )
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(myJson) {
+                    console.log(myJson);
+                    var result = document.getElementById("result");
+                    var li = document.createElement("li");
+                    li.innerHTML = `
+                       <div>${myJson.songs[0].name}</div>
+                    `;
+                    result.appendChild(li);
+                });
+
+
+        }
+    </script>
+</html>

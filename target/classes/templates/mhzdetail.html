@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+        <title>兆赫</title>
+    </head>
+    <body th:replace="layout">
+      <div th:fragment="content">
+        <div>
+          <img th:src="${subject.getCover()}" />
+          <p th:text="${subject.getName()}"></p>
+        </div>
+        <div th:each="song : ${songs}">
+          <img th:src="${song.getCover()}" />
+          <p th:text="${song.getName()}" ></p>
+        </div>
+      </div>
+    </body>
+</html>

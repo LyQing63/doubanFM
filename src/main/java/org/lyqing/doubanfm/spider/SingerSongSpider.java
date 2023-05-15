@@ -44,7 +44,7 @@ public class SingerSongSpider {
             "https://fm.douban.com/j/v2/artist/{0}/";
 
 
-    @PostConstruct
+    //@PostConstruct
     public void init() {
         doExcute();
         logger.info("spider end...");

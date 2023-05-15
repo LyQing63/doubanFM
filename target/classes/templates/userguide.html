@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+        <title>歌手选择</title>
+    </head>
+    <body th:replace="layout">
+        <div th:fragment="content">
+            <div class="singers" th:each="singer: ${singers}">
+                <img th:src="${singer.getAvatar()}" />
+                <p th:text="${singer.getName()}"></p>
+            </div>
+        </div>
+    </body>
+</html>

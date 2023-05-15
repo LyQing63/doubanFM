@@ -42,6 +42,8 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectMapper.getSubjects(type);
     }
 
+
+
     @Override
     public List<Subject> getSubjects(String type, String subType) {
         return subjectMapper.getSubjectsSub(type, subType);
@@ -66,5 +68,16 @@ public class SubjectServiceImpl implements SubjectService {
             }
             subjectMapper.modifySubjectSong(id, songId);
         }
+    }
+
+    @Override
+    public List<Subject> getAll() {
+        List<Subject> subjects = subjectMapper.getAll();
+        for (Subject subject : subjects) {
+            List<String> subjectSongs = subjectMapper.getSubjectSongs(subject.getId());
+            subject.setSongIds(subjectSongs);
+        }
+
+        return subjects;
     }
 }

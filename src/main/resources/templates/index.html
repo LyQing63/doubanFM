@@ -1,12 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
     <head>
         <meta charset="UTF-8" >
         <title>首页</title>
     </head>
-    <body>
-        <div th:fragment="content">
-            首页
-        </div>
+    <body th:replace="layout">
+            <div th:fragment="content">
+                <header>
+                    <div class="player" th:replace="player::player"></div>
+                </header>
+                <div class="main" th:each="mhzViewModel : ${mhzViewModels}">
+                    <div class="artists" th:if="${mhzViewModel.getTitle()} == 'artist'">
+                        <div class="artist" th:each="artist, count : ${mhzViewModel.getSubjects()}">
+                            <div th:if="${count.count} <= 20">
+                                <img th:src="${artist.getCover()}" />
+                                <p class="subjectName" th:text="${artist.getName()}"></p>
+                                <p class="subjectDescription" th:text="${artist.getDescription()}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="moods" th:if="${mhzViewModel.getTitle()} == 'mood'">
+                        <div class="mood" th:each="mood : ${mhzViewModel.getSubjects()}">
+                            <div>
+                                <p th:text="${mood.getName()}"></p>
+                                <p>MHZ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ages" th:if="${mhzViewModel.getTitle()} == 'age'">
+                        <div class="age" th:each="age : ${mhzViewModel.getSubjects()}">
+                            <div>
+                                <p th:text="${age.getName()}"></p>
+                                <p>MHZ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="styles" th:if="${mhzViewModel.getTitle()} == 'style'">
+                        <div class="style" th:each="style : ${mhzViewModel.getSubjects()}">
+                            <div>
+                                <p th:text="${style.getName()}"></p>
+                                <p>MHZ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </body>
 </html>

@@ -36,4 +36,6 @@ public interface SubjectService {
      * */
     void modify(Subject subject);
 
+    List<Subject> getAll();
+
 }

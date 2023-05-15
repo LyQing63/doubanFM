@@ -24,6 +24,12 @@ public interface SubjectMapper {
     /**
      * 获得主题
      * */
+
+    @Select(
+            "SELECT * FROM subject"
+    )
+    List<Subject> getAll();
+
     @Select(
             "SELECT * FROM subject WHERE id=#{subjectId}"
     )
